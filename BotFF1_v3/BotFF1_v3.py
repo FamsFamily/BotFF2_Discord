@@ -5,6 +5,7 @@ import random
 from keras.models import load_model  # TensorFlow is required for Keras to work
 from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
+import time
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -19,6 +20,7 @@ async def on_ready():
 async def halo(ctx):
     await ctx.send(f'''
 # Hai! Saya {bot.user}!
+
 ## Hal yang bisa saya lakukan:
 - **Menulis kata/kalimat dengan suku kata berulang. Perintah:**
  - ```!he 10```*
@@ -64,8 +66,10 @@ async def halo(ctx):
  - ```!fakta_acak_tentang_ketergantungan_teknologi```
 - **Menampilkan gambar & gif tentang bebek. Perintah:**
  - ```!bebek```
- - **Mengklasifikasikan buah-buahan (Apel, Jeruk, Pisang, atau Mangga). Perintah:**
+- **Mengklasifikasikan buah-buahan (Apel, Jeruk, Pisang, atau Mangga). Perintah:**
  - ```!klasifikasi_buah```
+
+## GitHub: https://github.com/FamsFamily/BotFF1_Discord.git
 ''')
 
 @bot.command()
@@ -130,19 +134,19 @@ async def perpangkatan(ctx, x:int, y:int):
 
 @bot.command()
 async def meme_pemrograman_1(ctx):
-    with open('meme_p_1.png', 'rb') as f:
+    with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_1.png', 'rb') as f:
         picture = discord.File(f)
         await ctx.send(file=picture)
 
 @bot.command()
 async def meme_pemrograman_2(ctx):
-    with open('meme_p_2.png', 'rb') as f:
+    with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_2.png', 'rb') as f:
         picture = discord.File(f)
         await ctx.send(file=picture)
 
 @bot.command()
 async def meme_pemrograman_3(ctx):
-    with open('meme_p_3.png', 'rb') as f:
+    with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_3.png', 'rb') as f:
         picture = discord.File(f)
         await ctx.send(file=picture)
 
@@ -150,15 +154,15 @@ async def meme_pemrograman_3(ctx):
 async def meme_pemrograman_acak(ctx):
     mm = random.randint(0,2)
     if mm == 0:
-        with open('meme_p_1.png', 'rb') as f:
+        with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_1.png', 'rb') as f:
             meme1 = discord.File(f)
             await ctx.send(file=meme1)
     elif mm == 1:
-        with open('meme_p_2.png', 'rb') as f:
+        with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_2.png', 'rb') as f:
             meme2 = discord.File(f)
             await ctx.send(file=meme2)
     elif mm == 2:
-        with open('meme_p_3.png', 'rb') as f:
+        with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_3.png', 'rb') as f:
             meme3 = discord.File(f)
             await ctx.send(file=meme3)
     
@@ -221,45 +225,45 @@ async def menerapkan_gaya_hidup_ramah_lingkungan(ctx):
     await ctx.send('''
 ## Menerapkan Gaya Hidup Ramah Lingkungan:
 - Kurangi Penggunaan Plastik Sekali Pakai
-- Hemat Energi di Rumah
+- Hemat Energi
 - Gunakan Transportasi Berkelanjutan
 - Daur Ulang
 - Menghemat Air
-- Minimalkan Pemakaian Bahan Kimia yang Berbahaya
-- Mengurangi Konsumsi Daging
+- Minimalkan Pemakaian Bahan Kimia
+- Kurangi Konsumsi Daging
 - Budidaya Tanaman Sendiri
-- Menggunakan Produk Ramah Lingkungan
-- Mengurangi Pemborosan Makanan
+- Gunakan Produk Ramah Lingkungan
+- Tidak Boros Makanan
 - Mendukung Komunitas Lokal
-- Kurangi Penggunaan Air Botol
+- Kurangi Konsumsi Air Mineral
 - Gunakan Produk Keanekaragaman Hayati yang Bertanggung Jawab
-- Menggunakan Kertas Secara Bijaksana
+- Gunakan Kertas Secara Bijak
 - Kurangi Penggunaan Bahan Bakar Fosil
 - Mendukung Pengembangan Ramah Lingkungan
-- Mengurangi Konsumsi Internet
-Pelajari selengkapnya di https://sohib.indonesiabaik.id/article/langkah-gaya-hidup-ramah-lingkungan-ADgsj
+- Cerdas dalam Mengonsumsi Internet
+Pelajari selengkapnya [di sini](https://www.ruangkota.com/senggang/24988460/gaya-hidup-ramah-lingkungan-nggak-cuma-suka-tanaman-ini-17-langkah-yang-bisa-kamu-lakukan?page=all)
 ''')
     
 @bot.command()
 async def cara_mengurangi_limbah(ctx):
     await ctx.send('''
 ## Cara Mengurangi Limbah:
-- Tidak Menggunakan Sedotan Plastik
-- Membawa Tas Belanja Sendiri
-- Mempunyai dan Membawa Botol Minum Sendiri
-- Membiasakan Diri Untuk Memasak Sendiri di Rumah
-- Membeli Barang dalam Kemasan yang Lebih besar Untuk Waktu yang Lama
-- Membatasi Penggunaan Microbeads
-- Memilih Es Krim Cone dibandingkan Es Krim Cup
-- Hindari Mengonsumsi Permen Karet
-- Membatasi Penggunaan Plastik dalam Membungkus Paket
-- Menggunakan Bahan Bekas yang Bisa Dipakai Lagi
-- Membuat Tas Daur Ulang dari Pembungkus Plastik
-- Memanfaatkan Botol Plastik Sebagai Pot
-- Mengkreasikan Botol Plastik Besar Menjadi Celengan
-- Botol Plastik dirubah Menjadi Tempat Pakan Burung
-- Merubah Botol Plastik Menjadi Tempat Alat Tulis
-Pelajari selengkapnya di https://www.rumah.com/panduan-properti/15-cara-mengurangi-sampah-plastik-rumahan-dan-contoh-daur-ulangnya-27696
+- Menolak penggunaan styrofoam.
+- Menggunakan tas kain saat berbelanja.
+- Mendukung usaha pengolahan limbah.
+- Membeli barang dengan kualitas baik agar bisa dipakai dalam jangka waktu lama.
+- Membawa botol minum pribadi.
+- Membeli barang bekas layak pakai, seperti baju, tas, dan sepatu.
+- Tidak belanja berlebihan.
+- Hindari peralatan rumah tangga sekali pakai.
+- Membawa alat makan sendiri seperti sendok, garpu, sumpit, dan sedotan.
+- Tidak menggunakan sedotan plastik.
+- Membiasakan diri untuk memasak sendiri di rumah.
+- Membeli barang dalam kemasan yang lebih besar untuk waktu yang lama.
+- Memilih es krim cone dibandingkan es krim cup.
+- Menggunakan bahan bekas yang bisa dipakai lagi.
+- Memanfaatkan botol plastik sebagai pot atau barang bermanfaat lainnya.
+Pelajari selengkapnya [di sini](https://adjar.grid.id/read/543687866/15-cara-mengurangi-sampah?page=all)
 ''')
 
 @bot.command()
@@ -292,10 +296,10 @@ def pendeteksi(path_image):
     np.set_printoptions(suppress=True)
 
     # Load the model
-    model = load_model("keras_model.h5", compile=False)
+    model = load_model("D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\keras_model.h5", compile=False)
 
     # Load the labels
-    class_names = open("labels.txt", "r").readlines()
+    class_names = open("D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\labels.txt", "r").readlines()
 
     # Create the array of the right shape to feed into the keras model
     # The 'length' or number of images you can put into the array is
@@ -336,9 +340,9 @@ async def klasifikasi_buah(ctx):
 
     #kode untuk AI
     response = requests.get(list(data)[-1])
-    with open("image.jpg", "wb") as f:
+    with open("D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\image.jpg", "wb") as f:
         f.write(response.content)
-    result = pendeteksi("image.jpg")
+    result = pendeteksi("D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\image.jpg")
     
     await ctx.send(result)
 
