@@ -1,0 +1,4 @@
+0 Jeruk
+1 Apel
+2 Pisang
+3 Mangga
