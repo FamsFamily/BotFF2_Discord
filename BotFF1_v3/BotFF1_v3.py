@@ -128,19 +128,19 @@ async def perpangkatan(ctx, x:int, y:int):
 
 @bot.command()
 async def meme_pemrograman_1(ctx):
-    with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_1.png', 'rb') as f:
+    with open('meme_p_1.png', 'rb') as f:
         picture = discord.File(f)
         await ctx.send(file=picture)
 
 @bot.command()
 async def meme_pemrograman_2(ctx):
-    with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_2.png', 'rb') as f:
+    with open('meme_p_2.png', 'rb') as f:
         picture = discord.File(f)
         await ctx.send(file=picture)
 
 @bot.command()
 async def meme_pemrograman_3(ctx):
-    with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_3.png', 'rb') as f:
+    with open('meme_p_3.png', 'rb') as f:
         picture = discord.File(f)
         await ctx.send(file=picture)
 
@@ -148,15 +148,15 @@ async def meme_pemrograman_3(ctx):
 async def meme_pemrograman_acak(ctx):
     mm = random.randint(0,2)
     if mm == 0:
-        with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_1.png', 'rb') as f:
+        with open('meme_p_1.png', 'rb') as f:
             meme1 = discord.File(f)
             await ctx.send(file=meme1)
     elif mm == 1:
-        with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_2.png', 'rb') as f:
+        with open('meme_p_2.png', 'rb') as f:
             meme2 = discord.File(f)
             await ctx.send(file=meme2)
     elif mm == 2:
-        with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_3.png', 'rb') as f:
+        with open('meme_p_3.png', 'rb') as f:
             meme3 = discord.File(f)
             await ctx.send(file=meme3)
     
