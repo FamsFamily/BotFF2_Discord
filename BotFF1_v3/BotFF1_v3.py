@@ -346,4 +346,4 @@ async def klasifikasi_buah(ctx):
     
     await ctx.send(result)
 
-bot.run("TOKEN RAHASIA ADA DI SINI")
+bot.run("TOKEN RAHASIA HARUS ADA DI SINI!")
