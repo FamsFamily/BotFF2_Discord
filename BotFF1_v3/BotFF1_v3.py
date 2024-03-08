@@ -64,6 +64,8 @@ async def halo(ctx):
  - ```!fakta_acak_tentang_ketergantungan_teknologi```
 - **Menampilkan gambar & gif tentang bebek. Perintah:**
  - ```!bebek```
+ - **Mengklasifikasikan buah-buahan (Apel, Jeruk, Pisang, atau Mangga). Perintah:**
+ - ```!klasifikasi_buah```
 ''')
 
 @bot.command()
@@ -164,6 +166,11 @@ async def meme_pemrograman_acak(ctx):
 @bot.command()
 async def lempar_koin(ctx):
     coin = ['# Kepala','# Ekor']
+    await ctx.send('## Melempar...')
+    for i in range(3):
+        time.sleep(1)
+        await ctx.send('...')
+    time.sleep(1)
     await ctx.send(random.choice(coin))
 
 @bot.command()
@@ -324,7 +331,7 @@ def pendeteksi(path_image):
     return class_name[2:]
 
 @bot.command()
-async def klasifikasi(ctx):
+async def klasifikasi_buah(ctx):
     data = ctx.message.attachments
 
     #kode untuk AI
