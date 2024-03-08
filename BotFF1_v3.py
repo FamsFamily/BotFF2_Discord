@@ -2,6 +2,9 @@ import discord
 from discord.ext import commands
 import requests
 import random
+from keras.models import load_model  # TensorFlow is required for Keras to work
+from PIL import Image, ImageOps  # Install pillow instead of PIL
+import numpy as np
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -29,17 +32,18 @@ async def halo(ctx):
  - ```!prok 10```*
  - *Jumlah perulangan. Ganti dengan jumlah perulangan yang Anda butuhkan atau mengosongkannya
 - **Menghitung operasi 2 angka. Perintah:**
- - ```!penjumlahan 6 2```
- - ```!pengurangan 6 2```
- - ```!perkalian 6 2```
- - ```!pembagian 6 2```
- - ```!pembagian_bilangan_bulat 6 2```
- - ```!perpangkatan 6 2```
+ - ```!penjumlahan 6 2```**
+ - ```!pengurangan 6 2```**
+ - ```!perkalian 6 2```**
+ - ```!pembagian 6 2```**
+ - ```!pembagian_bilangan_bulat 6 2```**
+ - ```!perpangkatan 6 2```**
+ - **Angka yang akan dioperasikan. Ganti dengan angka yang Anda butuhkan
  - **Menampilkan meme. Perintah:**
- - ```!meme1```
- - ```!meme2```
- - ```!meme3```
- - ```!meme_acak```
+ - ```!meme_pemrograman_1```
+ - ```!meme_pemrograman_2```
+ - ```!meme_pemrograman_3```
+ - ```!meme_pemrograman_acak```
 - **Melempar koin. Perintah:**
  - ```!lempar_koin```
 - **Menampilkan emoji. Perintah:**
@@ -51,8 +55,8 @@ async def halo(ctx):
  - ```!emoji_acak_marah```
  - ```!emoji_acak_terkejut_terdiam```
 - **Membuat sandi kuat. Perintah:**
- - ```!buat_sandi 10```**
- - **Jumlah karakter sandi. Ganti dengan jumlah karakter yang Anda butuhkan atau mengosongkannya
+ - ```!buat_sandi 10```***
+ - ***Jumlah karakter sandi. Ganti dengan jumlah karakter yang Anda butuhkan atau mengosongkannya
 - **Menampilkan kiat-kiat tentang lingkungan. Perintah:**
  - ```!menerapkan_gaya_hidup_ramah_lingkungan```
  - ```!cara_mengurangi_limbah```
@@ -123,44 +127,39 @@ async def perpangkatan(ctx, x:int, y:int):
     await ctx.send("Hasilnya: ```"+str(x**y)+"```")
 
 @bot.command()
-async def meme1(ctx):
-    with open('Slide2.jpg', 'rb') as f:
-        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+async def meme_pemrograman_1(ctx):
+    with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_1.png', 'rb') as f:
         picture = discord.File(f)
-   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
-    await ctx.send(file=picture)
+        await ctx.send(file=picture)
 
 @bot.command()
-async def meme2(ctx):
-    with open('Slide3.jpg', 'rb') as f:
-        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+async def meme_pemrograman_2(ctx):
+    with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_2.png', 'rb') as f:
         picture = discord.File(f)
-   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
-    await ctx.send(file=picture)
+        await ctx.send(file=picture)
 
 @bot.command()
-async def meme3(ctx):
-    with open('Slide4.jpg', 'rb') as f:
-        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+async def meme_pemrograman_3(ctx):
+    with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_3.png', 'rb') as f:
         picture = discord.File(f)
-   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
-    await ctx.send(file=picture)
+        await ctx.send(file=picture)
 
 @bot.command()
-async def meme_acak(ctx):
+async def meme_pemrograman_acak(ctx):
     mm = random.randint(0,2)
     if mm == 0:
-        with open('BotFF1\\Slide2.jpg', 'rb') as f:
-            meme1 = discord.file(f)
+        with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_1.png', 'rb') as f:
+            meme1 = discord.File(f)
             await ctx.send(file=meme1)
     elif mm == 1:
-        with open('BotFF1\\Slide3.jpg', 'rb') as f:
-            meme2 = discord.file(f)
+        with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_2.png', 'rb') as f:
+            meme2 = discord.File(f)
             await ctx.send(file=meme2)
     elif mm == 2:
-        with open('BotFF1\\Slide4.jpg', 'rb') as f:
-            meme3 = discord.file(f)
+        with open('D:\\0. Data Materi Sekolah Rumah-Transit\\H. Kodland\\Python Pro\\Folder\\BotFF1\\tm\\meme_p_3.png', 'rb') as f:
+            meme3 = discord.File(f)
             await ctx.send(file=meme3)
+    
 
 @bot.command()
 async def lempar_koin(ctx):
@@ -189,7 +188,7 @@ async def emoji_acak_bertindak_lucu(ctx):
 
 @bot.command()
 async def emoji_acak_sedih(ctx):
-    emoji_sedih = ['（；´д｀）ゞ','＞﹏＜','(っ °Д °;)っ','(￣ ‘i ￣;)','( *^-^)ρ(*╯^╰)','＞︿＜','o(￣┰￣*)ゞ','(ノへ￣、)','<(＿　＿)>','(#｀-_ゝ-)','（＞人＜；）','{{{(>_<)}}}','≡(▔﹏▔)≡','(#_<-)','⊙﹏⊙∥','ヽ(*。>Д<)o゜','/(ㄒoㄒ)/~~','(;´༎ຶД༎ຶ`)','::>_<::','╯︿╰','இ௰இ','(┬┬﹏┬┬)','(´。＿。｀)','(；′⌒`)','≧ ﹏ ≦','〒▽〒','━((*′д｀)爻(′д｀*))━!!!!','(T_T)','(≧﹏ ≦)','(′д｀ )…彡…彡','<( _ _ )>','o(TヘTo)','~~>_<~~','┗( T﹏T )┛(。﹏。*)','X﹏X','ಥ_ಥ']
+    emoji_sedih = ['（；´д｀）ゞ','＞﹏＜','(っ °Д °;)っ','(￣ ‘i ￣;)','( *^-^)ρ(*╯^╰)','＞︿＜','o(￣┰￣*)ゞ','(ノへ￣、)','<(＿　＿)>','(#｀-_ゝ-)','（＞人＜；）','{{{(>_<)}}}','≡(▔﹏▔)≡','(#_<-)','⊙﹏⊙∥','ヽ(*。>Д<)o゜','/(ㄒoㄒ)/~~','(;´༎ຶД༎ຶ`)','::>_<::','╯︿╰','இ௰இ','(┬┬﹏┬┬)','(´。＿。｀)','(；′⌒`)','≧ ﹏ ≦','〒▽〒','━((*′д｀)爻(′д｀*))━!!!!','(T_T)','(≧﹏ ≦)','(′д｀ )…彡…彡','<( _ _ )>','o(TヘTo)','~~>_<~~','┗( T﹏T )┛','(。﹏。*)','X﹏X','ಥ_ಥ']
     await ctx.send("```"+random.choice(emoji_sedih)+"```")
 
 @bot.command()
@@ -198,7 +197,7 @@ async def emoji_acak_marah(ctx):
     await ctx.send("```"+random.choice(emoji_marah)+"```")
 
 @bot.command()
-async def emoji_acak_terkejut_terdian(ctx):
+async def emoji_acak_terkejut_terdiam(ctx):
     emoji_terkejut_terdiam = ['w(ﾟДﾟ)w','┗|｀O′|┛','（⊙ｏ⊙）','(＃°Д°)','（*゜ー゜*）','(。_。)','...(*￣０￣)ノ','o((⊙﹏⊙))o.','(⊙ˍ⊙)','(⊙_⊙)？','(⊙_⊙;)','(⊙o⊙)','⊙.☉','¯\(°_o)/¯','(´･ω･`)?','(￣┰￣*)','o(><；)oo','Σ(っ °Д °;)っ','∑( 口 ||','┌(。Д。)┐','(°ー°〃)','ε=ε=ε=(~￣▽￣)~','(￣m￣）','(ノω<。)ノ))☆.。','(ﾉ*･ω･)ﾉ','(#`O′)','щ(ʘ╻ʘ)щ','（o´・ェ・｀o）','(*Φ皿Φ*)','(・∀・(・∀・(・∀・*)','(○´･д･)ﾉ','┬┴┬┴┤(･_├┬┴┬┴','(o_ _)ﾉ','(＠_＠;)','ㄟ( ▔, ▔ )ㄏ','(￣_,￣ )','(+_+)?','(。>︿<)_θ','<(￣ c￣)y▂ξ','(๐॔˃̶ᗜ˂̶๐॓)','o_o','━┳━　━┳━','━━(￣ー￣*|||━━',"……]((o_ _)'彡☆",'(。﹏。)','(⊙﹏⊙)','...( ＿ ＿)ノ｜',',,ԾㅂԾ,,','m( _ _ )m','(lll￢ω￢)','╮(╯-╰)╭','(￣▽￣)"','(￣_￣|||)','_〆(´Д｀ )','(x_x)','( ╯□╰ )','⊙﹏⊙∥','┌( ´_ゝ` )┐','－_-b','(ˉ﹃ˉ)','╮（╯＿╰）╭','(￣_,￣ )','○|￣|_','(ˉ▽￣～)','(´ｰ∀ｰ`)','(。・・)ノ','_(:з)∠)_','┑(￣Д ￣)┍','ε=ε=ε=┏(゜ロ゜;)┛','(*￣rǒ￣)','つ﹏⊂','(￣、￣)','╮(╯▽╰)╭','(☆-ｖ-)','(ˉ▽ˉ；)...','(◎﹏◎)','(((φ(◎ロ◎;)φ)))','<@_@>','→_→','←_←']
     await ctx.send("```"+random.choice(emoji_terkejut_terdiam)+"```")
 
@@ -276,10 +275,64 @@ def get_duck_image_url():
     data = res.json()
     return data['url']
 
-@bot.command('bebek')
+@bot.command()
 async def bebek(ctx):
-    '''Setelah kita memanggil perintah bebek, program akan memanggil fungsi get_duck_image_url'''
     image_url = get_duck_image_url()
     await ctx.send(image_url)
+
+def pendeteksi(path_image):
+    # Disable scientific notation for clarity
+    np.set_printoptions(suppress=True)
+
+    # Load the model
+    model = load_model("keras_model.h5", compile=False)
+
+    # Load the labels
+    class_names = open("labels.txt", "r").readlines()
+
+    # Create the array of the right shape to feed into the keras model
+    # The 'length' or number of images you can put into the array is
+    # determined by the first position in the shape tuple, in this case 1
+    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+
+    # Replace this with the path to your image
+    image = Image.open(path_image).convert("RGB")
+
+    # resizing the image to be at least 224x224 and then cropping from the center
+    size = (224, 224)
+    image = ImageOps.fit(image, size, Image.Resampling.LANCZOS)
+
+    # turn the image into a numpy array
+    image_array = np.asarray(image)
+
+    # Normalize the image
+    normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
+
+    # Load the image into the array
+    data[0] = normalized_image_array
+
+    # Predicts the model
+    prediction = model.predict(data)
+    index = np.argmax(prediction)
+    class_name = class_names[index]
+    confidence_score = prediction[0][index]
+
+    # Print prediction and confidence score
+    print("Class:", class_name[2:], end="")
+    print("Confidence Score:", confidence_score)
+
+    return class_name[2:]
+
+@bot.command()
+async def klasifikasi(ctx):
+    data = ctx.message.attachments
+
+    #kode untuk AI
+    response = requests.get(list(data)[-1])
+    with open("image.jpg", "wb") as f:
+        f.write(response.content)
+    result = pendeteksi("image.jpg")
+    
+    await ctx.send(result)
 
 bot.run("TOKEN RAHASIA ADA DI SINI")
